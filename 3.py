@@ -20,8 +20,8 @@ age_p=input("Enter your age:")
 new_p=ID(name_p,age_p)
 new_p.callback()
 
-#print(new_p.name)
-#print(new_p.age)
+print(new_p.name)
+print(new_p.age)
 
 
 
