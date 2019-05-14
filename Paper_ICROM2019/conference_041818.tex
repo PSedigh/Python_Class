@@ -1,0 +1,277 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Using Wasserstein Generative adversarial network Fpr generating Artificial Medical Images and Convloutional Neural Network For Skin Cancer Detection}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Pooyan Sedigh }
+\IEEEauthorblockA{\textit{Department of Biomedical Engineering,} \\
+\textit{Science and Research Branch, Islamic Azad University,)}\\
+Tehran, Iran.\\
+sedigh.pooyan@taarlab.com}
+\and
+\IEEEauthorblockN{Rasoul Sadeghian }
+\IEEEauthorblockA{\textit{Human and Robot Interaction Laboratory,} \\
+Tehran, Iran. \\
+rasoulsadeghian1987@gmail.com}
+\and
+
+\IEEEauthorblockN{ Shahrooz Shahin}
+\IEEEauthorblockA{\textit{Human and Robot Interaction Laboratory,} \\
+Tehran, Iran.\\ 
+shahrooz.shahin@taarlab.com}
+\and
+\IEEEauthorblockN{Mehdi Tale Masouleh}
+\IEEEauthorblockA{\textit{Human and Robot Interaction Laboratory, School of Electrical} \\
+\textit{and Computer Engineering, University of Tehran,}\\
+Tehran, Iran. \\
+m.t.masouleh@ut.ac.ir}
+}
+
+\maketitle
+
+\begin{abstract}
+One of the big concern in skin cancer, is to detect the cancer with the high accuracy and so fast. This paper presents the process of detecting the skin cancer by using the Convlutional Neural Networks (CNN). Because of the lack of dataset in order to use for training the CNN algorithm, in the first step the Wasserstein Generative adversarial network (WGAN) algorithm has been used to create artificial members for the under study dataset. According to the results of implementing the designed CNN model on the proposed dataset, 95 percentages of the skin cancer images are detected correctly. 
+\end{abstract}
+
+\begin{IEEEkeywords}
+Skin cancer detection, Convlutional Neural Networks, Wasserstein Generative adversarial network, Artificial Intelligence, Neural Network
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+Cancer can be regarded as of the main reasons of human mortality. Among many different kinds of cancers,the onw which is known to be more widespread between women is breast cancer~\cite{1}. From a recent statistics; it reveals that $6.3$ million women suffered breast cancer and have cancer since five years before $2012$. Moreover, in $2012$, $1.7$ women who have breast cancer were diagnosed~\cite{2}. The fast and high accurate diagnoses about cancers can reduce the risk of death among the patients~\cite{3}. According to the proposed demand, using the artificial intelligence method based on computer aid can consider as a perfect way~\cite{4}. 
+In recent two decades, the significant progress in machine learning algorithms and the computers' processing power have been caused a significant grows in using the proposed algorithms in different fields like medical engineering~\cite{5,6,7}. One of the main applications of machine learning algorithms in field of medical engineering is cancer detection~\cite{8,9,10}. Based on the proposed application, the data as a data set are imported to the algorithm. There are some dataset, which are used for breast cancer like, Wisconsin breast cancer~\cite{11}. 
+
+
+
+
+Some of algorithms which have been used for the cancer detection can be regarded as, logistic regression, decision tree and Support Vector Machine (SVM)~\cite{12, 13}. By using the machine learning algorithms cancer diagnose, the cancer detection speed and quality have been increased and consequently the cancer detection's expenses may reduce, significantly.\\
+The main contributions of this paper consist in, representing three machine learning algorithms, K$-$nearest neighbours, decision tree and logistic regression for cancer detection. Then implementing the proposed algorithms on Wisconsin breast cancer dataset. Moreover, comparing the aforementioned algorithms in terms of breast cancer detecting accuracy rate and computing time.\\
+The rest of this paper is organized as follows. In Section 2, the process of creating artificial medical image with WGAN are completely presented. Then, the CNN algorithm structure which is used to create a deep learning model for detecting the skin cancer are described. Finally, the paper concludes with some hints and remaining as ongoing works.
+
+\subsection{Dataset}
+
+\subsection{Wasserstein Generative adversarial network}
+In the first trace, the Generative adversarial network (GAN) algorithm is implemented on the preliminary databased in order to create the new data, to increase the number of database's members to increasing the accuracy of CNN model.The International Skin Imaging Collaboration database has some limitation for its users to download the data from it.
+
+\begin{algorithm}[H]
+ \For{Under training data (s)}
+ {
+ \For{i$=$1 to n}{
+ Input a batch of $k$ samples from random input, \{ $z^{1}, . . . ,    z^{m}$\};\\
+ Input a batch of $k$ data from generating distribution, \{$x^{1}, . . . , x^{m}$\};\\
+    Update  the discriminator, Eq.\ref{disc}
+    }
+    Input a batch of $k$ samples from random input, \{ $z^{1}, . . . ,    z^{m}$\};\\
+    Update the generator, Eq.\ref{gen}
+  }
+  
+ \caption{Generative Adversarial Network general structure.}
+\end{algorithm}
+
+
+
+
+Based on the proposed limitation in the first step just 80 images are downloaded. Moreover, the downloaded images are divided in two parts as 55 and 25 for training and test part. The first part,training, is considered to use for generating artificial images from it. Figure~\ref{5} illustrates some of the 55 images, which are used as a database to use in GAN algorithm. In the following the progress of generating artificial images based on GAN method are represented, Figs.~\ref{1} and \ref{2}. According to the Figs.~\ref{1} and \ref{2}, nine artificial images are generated based on 2000 epochs. Figure 3
+depicts the 2000th epoch. Based on Fig.~\ref{3}, the performance of the designed GAN algorithim in terms of generating the new medical images is acceptable.
+\begin{figure}
+    \centering
+    \begin{subfigure}[t]{0.15\textwidth}
+             \centering
+
+        \includegraphics[width=\textwidth]{4.png}
+        \caption{200 epochs.}
+        \label{fig:1}
+    \end{subfigure}
+~
+    \begin{subfigure}[t]{0.15\textwidth}
+             \centering
+
+        \includegraphics[width=\textwidth]{5.png}
+        \caption{400 epochs.}
+        \label{fig:2}
+    \end{subfigure}
+~
+    \begin{subfigure}[t]{0.15\textwidth}
+             \centering
+
+        \includegraphics[width=\textwidth]{6.png}
+        \caption{600 epochs.}
+        \label{fig:3}
+    \end{subfigure} 
+  ~     
+   
+    \begin{subfigure}[b]{0.15\textwidth}
+        \includegraphics[width=\textwidth]{7.png}
+        \caption{800 epochs.}
+        \label{fig:4}
+    \end{subfigure}
+  ~
+    \begin{subfigure}[b]{0.15\textwidth}
+        \includegraphics[width=\textwidth]{8.png}
+        \caption{1000 epochs.}
+        \label{fig:5}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.15\textwidth}
+        \includegraphics[width=\textwidth]{9.png}
+        \caption{1200 epochs.}
+        \label{fig:6}
+    \end{subfigure}
+   ~
+     \begin{subfigure}[b]{0.15\textwidth}
+        \includegraphics[width=\textwidth]{10.png}
+        \caption{1400 epochs.}
+        \label{fig:7}
+    \end{subfigure}
+   ~
+    \begin{subfigure}[b]{0.15\textwidth}
+        \includegraphics[width=\textwidth]{11.png}
+        \caption{1600 epochs.}
+        \label{fig:8}
+    \end{subfigure}
+  ~
+    \begin{subfigure}[b]{0.15\textwidth}
+        \includegraphics[width=\textwidth]{12.png}
+        \caption{1800 epochs.}
+        \label{fig:8}
+    \end{subfigure} 
+       
+   ~
+    \begin{subfigure}[b]{0.15\textwidth}
+        \includegraphics[width=\textwidth]{13.png}
+        \caption{2000 epochs.}
+        \label{fig:9}
+    \end{subfigure}
+  
+    
+    \caption{WGAN performance during 2000 epochs.}\label{fig:GANR}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Then, in order to achieve better result the Wasserstein GAN(WGAN) algorithm is implemented on the data. The main difference between the GAN and WGAN can be regarded as, in the WGAN a new cost function using Wasserstein distance that has a smoother gradient everywhere is used, moreover, WGAN learns without paying attention to the generator act. Equations~\ref{dgan} and \ref{ggan} represent the discriminator and generator functions, respectively, which are used for the GAN algorithm. 
+
+
+
+
+\begin{equation}
+\nabla_{\theta_{d}}\frac{1}{m}\sum_{n=1}^{m}[\log D(x^{i})+\log(1-D(G(z^{i})))]
+\label{dgan}
+\end{equation}
+
+\begin{equation}
+\nabla_{\theta_{g}}\frac{1}{m}\sum_{n=1}^{m} -\log(D(G(z^{i})))
+\label{ggan}
+\end{equation}
+
+
+
+\begin{equation}
+\nabla_{\omega}\frac{1}{m}\sum_{n=1}^{m}[f(x^{i})-f(G(z^{i}))]
+\label{cwgan}
+\end{equation}
+
+
+
+
+\begin{equation}
+\nabla_{\omega}\frac{1}{m}\sum_{n=1}^{m} -f(G(z^{i}))
+\label{gwgan}
+\end{equation}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\columnwidth]{gan}
+\caption{The GAN algorithm structure.}
+\label{gann}
+\centering
+\includegraphics[width=1\columnwidth]{wgan}
+\caption{The WGAN algorithm structure.}
+\label{wgann}
+\end{figure}
+
+Figures~\ref{gann} and \ref{wgann} illustrate the stucture of GAN and WGAN algorithms.
+the variables which are used in Eqs.~\ref{dgan},~\ref{ggan},~\ref{cwgan}	and \ref{gwgan} are defined as,$z$ is the noise which can consider as a normal or uniform distributions, $G$ , is the generator and it used to create an image based on $x=G(z)$. Moreover, $m$ is the number of noise and examples which are achieved from data generations, $D(x)$, is the function to calculate the probability that $x$ came from the data rather than gener<ator distribution.Furthermore,$\nabla$ is the stochastic gradient decent which is used to training the GAN based on $\theta_{d}$ and $\theta_{g}$ parameters.
+Figure~\ref{itere} depicts the obtained images after $1000$ iterations.As it is obvious in the Fig.~\ref{itere}, after each $200$ iterations the quality of the images have been improved.
+
+\begin{figure}
+\centering
+\includegraphics[width=1\columnwidth]{iteration.pdf}
+\caption{The obtained result after $1000$ iterations of WGAN implementation.}
+\label{itere}
+\end{figure}
+\subsection{Results}
+\section{Model Training}
+\subsection{Convlutional Neural Network}
+\subsection{Results}
+\section{Conclusion}
+
+
+\begin{thebibliography}{00}
+\bibitem{1} Ferlay J SI, Ervik M, Dikshit R, Eser S, Mathers C, Rebelo M,
+Parkin DM, Forman D, Bray, F, ``Cancer Incidence and
+Mortality Worldwide: IARC CancerBase,'' No 11. http://globocan.
+iarc.fr, 2013.
+
+\bibitem{2} Shirazi AZ, Chabok SJ, Mohammadi Z.,``A novel and reliable computational intelligence system for breast cancer detection,'' Medical \& biological engineering \& computing. 2018 May 1;56(5):721-32.
+
+\bibitem{3} Khuriwal N, Mishra N. , ``Breast cancer diagnosis using adaptive voting ensemble machine learning algorithm,'' In 2018 IEEMA Engineer Infinite Conference (eTechNxT) 2018 Mar 13 (pp. 1-5). IEEE.
+
+\bibitem{4} Deng C, Perkowski M., ``A Novel Weighted Hierarchical Adaptive Voting Ensemble Machine Learning Method for Breast Cancer Detection,'' In 2015 IEEE International Symposium on Multiple-Valued Logic (ISMVL) 2015 May 1 (pp. 115-120). IEEE.
+
+\bibitem{5} Qasem A, Abdullah SN, Sahran S, Wook TS, Hussain RI, Abdullah N, Ismail F.,``Breast cancer mass localization based on machine learning,'' In Signal Processing \& its Applications (CSPA), 2014 IEEE 10th International Colloquium on 2014 Mar 7 (pp. 31-36). IEEE.
+
+\bibitem{6} Gayathri BM, Sumathi CP. , ``Comparative study of relevance vector machine with various machine learning techniques used for detecting breast cancer,'' In Computational Intelligence and Computing Research (ICCIC), 2016 IEEE International Conference on 2016 Dec 15 (pp. 1-5). IEEE.
+  
+\bibitem{7} Forsyth AW, Barzilay R, Hughes KS, Lui D, Lorenz KA, Enzinger A, Tulsky JA, Lindvall C., ``Machine learning methods to extract documentation of breast cancer symptoms from electronic health records,''Journal of pain and symptom management. 2018 Jun 1;55(6):1492-9.
+
+\bibitem{8} Nayak S, Gope D., ``Comparison of supervised learning algorithms for RF-based breast cancer detection,'' In Computing and Electromagnetics International Workshop (CEM), 2017 2017 Jun 21 (pp. 13-14). IEEE.
+
+\bibitem{9} Kim S, Jung S, Park Y, Lee J, Park J., ``Effective liver cancer diagnosis method based on machine learning algorithm,'' In Biomedical Engineering and Informatics (BMEI), 2014 7th International Conference on 2014 Oct 14 (pp. 714-718). IEEE.
+
+\bibitem{10} Turgut S, Dağtekin M, Ensari T., ``Microarray breast cancer data classification using machine learning methods,'' In 2018 Electric Electronics, Computer Science, Biomedical Engineerings' Meeting (EBBT) 2018 Apr 18 (pp. 1-3). IEEE.
+
+\bibitem{11} Chaurasia V, Pal S, Tiwari BB., ``Prediction of benign and malignant breast cancer using data mining techniques,'' Journal of Algorithms \& Computational Technology. 2018 Jun;12(2):119-26.
+\bibitem{12} Wang H, Zheng B, Yoon SW, Ko HS., ``A support vector machine-based ensemble algorithm for breast cancer diagnosis,'' European Journal of Operational Research. 2018 Jun 1;267(2):687-99.
+ 
+\bibitem{13} Zheng B, Yoon SW, Lam SS., ``Breast cancer diagnosis based on feature extraction using a hybrid of K-means and support vector machine algorithms,'' Expert Systems with Applications. 2014 Mar 1;41(4):1476-82.
+
+
+\end{thebibliography}
+
+
+
+\end{document}
