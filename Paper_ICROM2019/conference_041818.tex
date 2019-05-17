@@ -4,6 +4,7 @@
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
+\usepackage[]{algorithm2e}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{graphicx}
@@ -27,11 +28,6 @@ Tehran, Iran. \\
 rasoulsadeghian1987@gmail.com}
 \and
 
-\IEEEauthorblockN{ Shahrooz Shahin}
-\IEEEauthorblockA{\textit{Human and Robot Interaction Laboratory,} \\
-Tehran, Iran.\\ 
-shahrooz.shahin@taarlab.com}
-\and
 \IEEEauthorblockN{Mehdi Tale Masouleh}
 \IEEEauthorblockA{\textit{Human and Robot Interaction Laboratory, School of Electrical} \\
 \textit{and Computer Engineering, University of Tehran,}\\
@@ -42,7 +38,8 @@ m.t.masouleh@ut.ac.ir}
 \maketitle
 
 \begin{abstract}
-One of the big concern in skin cancer, is to detect the cancer with the high accuracy and so fast. This paper presents the process of detecting the skin cancer by using the Convlutional Neural Networks (CNN). Because of the lack of dataset in order to use for training the CNN algorithm, in the first step the Wasserstein Generative adversarial network (WGAN) algorithm has been used to create artificial members for the under study dataset. According to the results of implementing the designed CNN model on the proposed dataset, 95 percentages of the skin cancer images are detected correctly. 
+One of the big concern in skin cancer, is to detect the cancer with the high accuracy and so fast. This paper presents the process of detecting the skin cancer by using the Convlutional Neural Networks (CNN).The database which is used for this paper has just 80 images from
+the International Skin Imaging Collaboration (ISIC). Because of the lack of dataset in order to use for training the CNN algorithm, in the first step the Wasserstein Generative adversarial network (WGAN) algorithm has been used to create artificial members for the under study dataset. According to the results of implementing the designed CNN model on the proposed dataset, 95 percentages of the skin cancer images are detected correctly. \\
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -62,20 +59,48 @@ The main contributions of this paper consist in, representing three machine lear
 The rest of this paper is organized as follows. In Section 2, the process of creating artificial medical image with WGAN are completely presented. Then, the CNN algorithm structure which is used to create a deep learning model for detecting the skin cancer are described. Finally, the paper concludes with some hints and remaining as ongoing works.
 
 \subsection{Dataset}
-
+The preliminary database which is used for this project has just 80 members. The members of this dataset are the skin cancer images which are collected from the International Skin Imaging Collaboration (ISIC) and they are labelled as skin cancer. 
 \subsection{Wasserstein Generative adversarial network}
 In the first trace, the Generative adversarial network (GAN) algorithm is implemented on the preliminary databased in order to create the new data, to increase the number of database's members to increasing the accuracy of CNN model.The International Skin Imaging Collaboration database has some limitation for its users to download the data from it.
 
-\begin{algorithm}[H]
+
+\begin{equation}
+\nabla_{\theta_{d}}\frac{1}{m}\sum_{n=1}^{m}[\log D(x^{i})+\log(1-D(G(z^{i})))]
+\label{dgan}
+\end{equation}
+
+\begin{equation}
+\nabla_{\theta_{g}}\frac{1}{m}\sum_{n=1}^{m} -\log(D(G(z^{i})))
+\label{ggan}
+\end{equation}
+
+
+
+\begin{equation}
+\nabla_{\omega}\frac{1}{m}\sum_{n=1}^{m}[f(x^{i})-f(G(z^{i}))]
+\label{cwgan}
+\end{equation}
+
+
+
+
+\begin{equation}
+\nabla_{\omega}\frac{1}{m}\sum_{n=1}^{m} -f(G(z^{i}))
+\label{gwgan}
+\end{equation}
+
+Equations~\ref{dgan} and \ref{ggan} represent the discriminator and generator functions, respectively, which are used for the GAN algorithm. 
+
+\begin{algorithm}[t]
  \For{Under training data (s)}
  {
  \For{i$=$1 to n}{
  Input a batch of $k$ samples from random input, \{ $z^{1}, . . . ,    z^{m}$\};\\
  Input a batch of $k$ data from generating distribution, \{$x^{1}, . . . , x^{m}$\};\\
-    Update  the discriminator, Eq.\ref{disc}
+    Update  the discriminator, Eq.\ref{dgan}
     }
     Input a batch of $k$ samples from random input, \{ $z^{1}, . . . ,    z^{m}$\};\\
-    Update the generator, Eq.\ref{gen}
+    Update the generator, Eq.\ref{ggan}
   }
   
  \caption{Generative Adversarial Network general structure.}
@@ -161,56 +186,11 @@ depicts the 2000th epoch. Based on Fig.~\ref{3}, the performance of the designed
 \end{figure}
 
 
+Then, in order to achieve better result the Wasserstein GAN(WGAN) algorithm is implemented on the data. The main difference between the GAN and WGAN can be regarded as, in the WGAN a new cost function using Wasserstein distance that has a smoother gradient everywhere is used, moreover, WGAN learns without paying attention to the generator act. 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- Then, in order to achieve better result the Wasserstein GAN(WGAN) algorithm is implemented on the data. The main difference between the GAN and WGAN can be regarded as, in the WGAN a new cost function using Wasserstein distance that has a smoother gradient everywhere is used, moreover, WGAN learns without paying attention to the generator act. Equations~\ref{dgan} and \ref{ggan} represent the discriminator and generator functions, respectively, which are used for the GAN algorithm. 
-
-
-
-
-\begin{equation}
-\nabla_{\theta_{d}}\frac{1}{m}\sum_{n=1}^{m}[\log D(x^{i})+\log(1-D(G(z^{i})))]
-\label{dgan}
-\end{equation}
-
-\begin{equation}
-\nabla_{\theta_{g}}\frac{1}{m}\sum_{n=1}^{m} -\log(D(G(z^{i})))
-\label{ggan}
-\end{equation}
-
-
-
-\begin{equation}
-\nabla_{\omega}\frac{1}{m}\sum_{n=1}^{m}[f(x^{i})-f(G(z^{i}))]
-\label{cwgan}
-\end{equation}
-
-
-
-
-\begin{equation}
-\nabla_{\omega}\frac{1}{m}\sum_{n=1}^{m} -f(G(z^{i}))
-\label{gwgan}
-\end{equation}
 
 \begin{figure}
 \centering
@@ -233,12 +213,37 @@ Figure~\ref{itere} depicts the obtained images after $1000$ iterations.As it is 
 \caption{The obtained result after $1000$ iterations of WGAN implementation.}
 \label{itere}
 \end{figure}
-\subsection{Results}
-\section{Model Training}
-\subsection{Convlutional Neural Network}
-\subsection{Results}
-\section{Conclusion}
 
+
+\subsection{Results}
+
+
+\section{Model Training}
+
+
+\subsection{Convlutional Neural Network}
+In order to implement the convolutional neural network on the dataset, the
+Keras libraries are used. The main steps to set the CNN algorithm on the
+proposed dataset can be regarded as:
+\begin{enumerate}
+\item In order to initialize the neural network, the Sequential library is used.
+\item In order to make the CNN for the images the Convolution2D is used.
+\item The pooling layers are added by using of MaxPooling2D (Reduce the size
+of the feature map).
+\item The Flatten function is set to convert the pooled feature map to a single
+column that is passed to the fully connected layer (All the pooled feature
+maps are taken and put into a single vector).
+\item The Dense function is used to added fully connected layer to the neural network (Using the input vector for the neural network).
+Listing 1 illustrates the process of setting the parameters and functions to design the CNN algorithm.
+\end{enumerate}
+
+
+\subsection{Results}
+
+
+\section{Conclusion}
+In this report the process of implementing the WGAN algorithm is represented and the main reasons that prove the superiority of the WGAN compare to the GAN algorithm are represented. Moreover, some of the results which are obtained based on the implementation of WGAN are illustrated. Furthermore, the process of designing and implementing the convlotional neural network on the generated databse is described. Based on the results which are obtained from the CNN algorithm implementation, after 300 epochs the accuracy of the training model is 63 percentages which can considered as a so good results by considering the number of the under study database and the number of epochs. Now, the process of collecting data, generalizing new data, making model and
+testing the model is finished and the next step is writing a paper by combining the technical reports which are prepared in three versions.
 
 \begin{thebibliography}{00}
 \bibitem{1} Ferlay J SI, Ervik M, Dikshit R, Eser S, Mathers C, Rebelo M,
