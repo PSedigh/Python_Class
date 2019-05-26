@@ -14,7 +14,7 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Using Wasserstein Generative adversarial network Fpr generating Artificial Medical Images and Convloutional Neural Network For Skin Cancer Detection}
+\title{Generating Synthetic Medical Images By Using WGAN To Improve CNN  Performance In Skin Cancer Classification}
 
 \author{\IEEEauthorblockN{1\textsuperscript{st} Pooyan Sedigh }
 \IEEEauthorblockA{\textit{Department of Biomedical Engineering,} \\
@@ -38,8 +38,9 @@ m.t.masouleh@ut.ac.ir}
 \maketitle
 
 \begin{abstract}
-One of the big concern in skin cancer, is to detect the cancer with the high accuracy and so fast. This paper presents the process of detecting the skin cancer by using the Convlutional Neural Networks (CNN).The database which is used for this paper has just 80 images from
-the International Skin Imaging Collaboration (ISIC). Because of the lack of dataset in order to use for training the CNN algorithm, in the first step the Wasserstein Generative adversarial network (WGAN) algorithm has been used to create artificial members for the under study dataset. According to the results of implementing the designed CNN model on the proposed dataset, 95 percentages of the skin cancer images are detected correctly. \\
+One of the big concern in skin cancer, is to detect the cancer with the high accuracy and so fast. In recent decade deep learning methods have led to a great breakthrough in wide range of cancer detection. 
+In this paper, the Wasserstein Generative Adversarial Network(WGAN) represents to generate synthetic medical images of skin cancer. The artificial database which is obtained based on the WGAN is added to the main database and it is used for improving the performance of Convolutional Neural Network which is designed for classification of the skin cancer based on the medical images. The database which is used for this paper has just 80 images from
+the International Skin Imaging Collaboration (ISIC). According to the results of implementing the designed CNN model on the test database which has 200 members, 87\% of the skin cancer images are detected correctly. \\
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -48,19 +49,15 @@ Skin cancer detection, Convlutional Neural Networks, Wasserstein Generative adve
 
 \section{Introduction}
 
-Cancer can be regarded as of the main reasons of human mortality. Among many different kinds of cancers,the onw which is known to be more widespread between women is breast cancer~\cite{1}. From a recent statistics; it reveals that $6.3$ million women suffered breast cancer and have cancer since five years before $2012$. Moreover, in $2012$, $1.7$ women who have breast cancer were diagnosed~\cite{2}. The fast and high accurate diagnoses about cancers can reduce the risk of death among the patients~\cite{3}. According to the proposed demand, using the artificial intelligence method based on computer aid can consider as a perfect way~\cite{4}. 
-In recent two decades, the significant progress in machine learning algorithms and the computers' processing power have been caused a significant grows in using the proposed algorithms in different fields like medical engineering~\cite{5,6,7}. One of the main applications of machine learning algorithms in field of medical engineering is cancer detection~\cite{8,9,10}. Based on the proposed application, the data as a data set are imported to the algorithm. There are some dataset, which are used for breast cancer like, Wisconsin breast cancer~\cite{11}. 
-
-
-
-
+Cancer can be regarded as one of the main reasons of human mortality. The fast and high accurate diagnoses about cancers can reduce the risk of death among the patients~\cite{3}. According to the proposed demand, using the artificial intelligence method based on computer aid can consider as a perfect way~\cite{4}. 
+In recent two decades, the significant progress in machine learning(ML) and Deep Learning (DL) algorithms and the computers' processing power have been caused a significant grows in using the proposed algorithms in different fields like medical engineering~\cite{5,6,7}. One of the main applications of ML and DL algorithms in field of medical engineering is cancer detection~\cite{8,9,10}.  According to the structure of ML and DL algorithms, having a huge database is necessary to achieve good results. Using data augmentation can solve the lack of database for medical images. Usually the data augmentation methods just consists of scale, rotation, transformation or flip, but for complex modification like pixel transformation, the GAN or WGAN algorithms are more common.
 Some of algorithms which have been used for the cancer detection can be regarded as, logistic regression, decision tree and Support Vector Machine (SVM)~\cite{12, 13}. By using the machine learning algorithms cancer diagnose, the cancer detection speed and quality have been increased and consequently the cancer detection's expenses may reduce, significantly.\\
-The main contributions of this paper consist in, representing three machine learning algorithms, K$-$nearest neighbours, decision tree and logistic regression for cancer detection. Then implementing the proposed algorithms on Wisconsin breast cancer dataset. Moreover, comparing the aforementioned algorithms in terms of breast cancer detecting accuracy rate and computing time.\\
-The rest of this paper is organized as follows. In Section 2, the process of creating artificial medical image with WGAN are completely presented. Then, the CNN algorithm structure which is used to create a deep learning model for detecting the skin cancer are described. Finally, the paper concludes with some hints and remaining as ongoing works.
+The main contributions of this paper consist in, producing artificial skin cancer medical images to improve the CNN network by using WGAN. Moreover, design a CNN algorithm to use for benign and malignant skin cancer classification. Finally, assess the performance of the the designed CNN in classification of the benign and malignant skin cancer.\\
+The rest of this paper is organized as follows. In Section 2,the characteristics of the data which are used for the designed WGAN for this paper are described. Then, in section 3, the process of designing GAN and WGAN algorithms and the difference of them are explained. In Section 4, the structure of CNN algorithm which is designed to use for classification of the skin cancer based on the medical images is represented. In Section 5, a deep discussion about the results of implementing the CNN algorithm on the test database is completely explained. Finally, the paper concludes with some hints and remaining as ongoing works.
 
 \subsection{Dataset}
 The preliminary database which is used for this project has just 80 members. The members of this dataset are the skin cancer images which are collected from the International Skin Imaging Collaboration (ISIC) and they are labelled as skin cancer. 
-\subsection{Wasserstein Generative adversarial network}
+\subsection{Generating Synthetic Skin Cancer Medical Images}
 In the first trace, the Generative adversarial network (GAN) algorithm is implemented on the preliminary databased in order to create the new data, to increase the number of database's members to increasing the accuracy of CNN model.The International Skin Imaging Collaboration database has some limitation for its users to download the data from it.
 
 
@@ -240,18 +237,19 @@ Listing 1 illustrates the process of setting the parameters and functions to des
 
 \subsection{Results}
 
+\section{Discussion}
 
 \section{Conclusion}
 In this report the process of implementing the WGAN algorithm is represented and the main reasons that prove the superiority of the WGAN compare to the GAN algorithm are represented. Moreover, some of the results which are obtained based on the implementation of WGAN are illustrated. Furthermore, the process of designing and implementing the convlotional neural network on the generated databse is described. Based on the results which are obtained from the CNN algorithm implementation, after 300 epochs the accuracy of the training model is 63 percentages which can considered as a so good results by considering the number of the under study database and the number of epochs. Now, the process of collecting data, generalizing new data, making model and
 testing the model is finished and the next step is writing a paper by combining the technical reports which are prepared in three versions.
 
 \begin{thebibliography}{00}
-\bibitem{1} Ferlay J SI, Ervik M, Dikshit R, Eser S, Mathers C, Rebelo M,
-Parkin DM, Forman D, Bray, F, ``Cancer Incidence and
-Mortality Worldwide: IARC CancerBase,'' No 11. http://globocan.
-iarc.fr, 2013.
-
-\bibitem{2} Shirazi AZ, Chabok SJ, Mohammadi Z.,``A novel and reliable computational intelligence system for breast cancer detection,'' Medical \& biological engineering \& computing. 2018 May 1;56(5):721-32.
+%\bibitem{1} Ferlay J SI, Ervik M, Dikshit R, Eser S, Mathers C, Rebelo M,
+%Parkin DM, Forman D, Bray, F, ``Cancer Incidence and
+%Mortality Worldwide: IARC CancerBase,'' No 11. http://globocan.
+%iarc.fr, 2013.
+%
+%\bibitem{2} Shirazi AZ, Chabok SJ, Mohammadi Z.,``A novel and reliable computational intelligence system for breast cancer detection,'' Medical \& biological engineering \& computing. 2018 May 1;56(5):721-32.
 
 \bibitem{3} Khuriwal N, Mishra N. , ``Breast cancer diagnosis using adaptive voting ensemble machine learning algorithm,'' In 2018 IEEMA Engineer Infinite Conference (eTechNxT) 2018 Mar 13 (pp. 1-5). IEEE.
 
@@ -269,9 +267,9 @@ iarc.fr, 2013.
 
 \bibitem{10} Turgut S, Dağtekin M, Ensari T., ``Microarray breast cancer data classification using machine learning methods,'' In 2018 Electric Electronics, Computer Science, Biomedical Engineerings' Meeting (EBBT) 2018 Apr 18 (pp. 1-3). IEEE.
 
-\bibitem{11} Chaurasia V, Pal S, Tiwari BB., ``Prediction of benign and malignant breast cancer using data mining techniques,'' Journal of Algorithms \& Computational Technology. 2018 Jun;12(2):119-26.
-\bibitem{12} Wang H, Zheng B, Yoon SW, Ko HS., ``A support vector machine-based ensemble algorithm for breast cancer diagnosis,'' European Journal of Operational Research. 2018 Jun 1;267(2):687-99.
- 
+%\bibitem{11} Chaurasia V, Pal S, Tiwari BB., ``Prediction of benign and malignant breast cancer using data mining techniques,'' Journal of Algorithms \& Computational Technology. 2018 Jun;12(2):119-26.
+%\bibitem{12} Wang H, Zheng B, Yoon SW, Ko HS., ``A support vector machine-based ensemble algorithm for breast cancer diagnosis,'' European Journal of Operational Research. 2018 Jun 1;267(2):687-99.
+% 
 \bibitem{13} Zheng B, Yoon SW, Lam SS., ``Breast cancer diagnosis based on feature extraction using a hybrid of K-means and support vector machine algorithms,'' Expert Systems with Applications. 2014 Mar 1;41(4):1476-82.
 
 
